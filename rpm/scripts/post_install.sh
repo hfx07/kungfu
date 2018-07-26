@@ -10,7 +10,7 @@ KUNGFU_RUNTIME_DIR=$KUNGFU_DATA_DIR/runtime
 KUNGFU_JOURNAL_DIR=$KUNGFU_DATA_DIR/journal
 
 groupadd -f --system --gid 666 bruce
-useradd -p `openssl passwd -1 master` -m -d $KUNGFU_HOME_DIR --system --uid 666 -g bruce -G bruce,wheel --shell=/bin/bash bruce
+useradd -p `openssl passwd -1 master` -m -d $KUNGFU_HOME_DIR --system --uid 666 -g bruce -G bruce,sudo --shell=/bin/bash bruce
 
 cat <<EOT > $KUNGFU_HOME_DIR/.bashrc
 if [ -f /etc/bashrc ]; then

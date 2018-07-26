@@ -1,5 +1,0 @@
-Git Version : c405361d4d7e7f99c275ee920aa6dc71b4c099a5
-Build System: Linux-4.13.0-41-generic
-CMake       : /usr/local/bin/cmake
-Builder     : hufx
-Time        : 20180514001958
