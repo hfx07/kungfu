@@ -1,0 +1,15 @@
++ umask 022
++ cd /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/BUILD
++ mv /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/kungfu-0.0.5-Linux /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/tmpBBroot
++ exit 0
++ umask 022
++ cd /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/BUILD
++ [ -e /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/kungfu-0.0.5-Linux ]
++ mv /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/tmpBBroot /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/kungfu-0.0.5-Linux
++ /usr/lib/rpm/brp-compress
++ /usr/lib/rpm/brp-strip /usr/bin/strip
++ /usr/lib/rpm/brp-strip-static-archive /usr/bin/strip
++ /usr/lib/rpm/brp-strip-comment-note /usr/bin/strip /usr/bin/objdump
++ umask 022
++ cd /home/hufx/kungfu/build/_CPack_Packages/Linux/RPM/BUILD
++ exit 0

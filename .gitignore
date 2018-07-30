@@ -55,5 +55,3 @@ Debug/
 cmake-build-debug/
 extra_dump.py
 .DS_Store
-
-build/
