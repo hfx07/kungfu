@@ -54,6 +54,8 @@ inline struct LFMarketDataField parseFrom(const struct CThostFtdcDepthMarketData
 	res.BidVolume5 = ori.BidVolume5;
 	res.AskPrice5 = ori.AskPrice5;
 	res.AskVolume5 = ori.AskVolume5;
+	res.AveragePrice = ori.AveragePrice;
+	memcpy(res.ActionDay, ori.ActionDay, 9);
 	return res;
 }
 

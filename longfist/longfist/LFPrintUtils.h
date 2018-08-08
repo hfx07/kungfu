@@ -58,6 +58,8 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "BidVolume5:" << std::setw(6) << "(i)" << " " << (int)ptr->BidVolume5 << std::endl \
 	 << std::setw(20) << "AskPrice5:" << std::setw(6) << "(d)" << " " << ptr->AskPrice5 << std::endl \
 	 << std::setw(20) << "AskVolume5:" << std::setw(6) << "(i)" << " " << (int)ptr->AskVolume5 << std::endl \
+	 << std::setw(20) << "AveragePrice:" << std::setw(6) << "(d)" << " " << ptr->AveragePrice << std::endl \
+	 << std::setw(20) << "ActionDay:" << std::setw(6) << "(c13)" << " " << ptr->ActionDay << std::endl \
 	
 #define PRINT_L2_MD(ptr) ""\
 	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c9)" << " " << ptr->TradingDay << std::endl \
@@ -402,6 +404,8 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "BidVolume5:" << std::setw(6) << "(i)" << " " << (int)ptr->BidVolume5 << std::endl \
 	 << std::setw(20) << "AskPrice5:" << std::setw(6) << "(d)" << " " << ptr->AskPrice5 << std::endl \
 	 << std::setw(20) << "AskVolume5:" << std::setw(6) << "(i)" << " " << (int)ptr->AskVolume5 << std::endl \
+	 << std::setw(20) << "AveragePrice:" << std::setw(6) << "(d)" << " " << ptr->AveragePrice << std::endl \
+	 << std::setw(20) << "ActionDay:" << std::setw(6) << "(c9)" << " " << ptr->ActionDay << std:: endl \
 	
 #define PRINT_QRY_POS_CTP(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \

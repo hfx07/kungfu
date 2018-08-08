@@ -61,6 +61,8 @@ struct LFMarketDataField
 	int      	BidVolume5;            //申买量五
 	double   	AskPrice5;             //申卖价五
 	int      	AskVolume5;            //申卖量五
+	double		AveragePrice;          //当日均价
+	char_13  	ActionDay;             //业务日期
 };
 
 struct LFL2MarketDataField
