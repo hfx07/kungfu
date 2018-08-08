@@ -44,7 +44,7 @@ def setup_environment_variables():
     os.environ["BOOST_SO_LIB"] = os.environ["YJJ_HOME"] + "/lib/boost"
     os.environ["YJJ_SO_LIB"] = os.environ["YJJ_HOME"] + "/lib/yijinjing"
     os.environ["YJJ_DEP_LIB"] = os.environ["BOOST_SO_LIB"] + ":" + os.environ["YJJ_SO_LIB"]
-    os.environ["PYTHONPATH"] = os.environ["YJJ_DEP_LIB"]
+    os.environ["PYTHONPATH"] = os.environ["YJJ_DEP_LIB"] + ":" + "/opt/kungfu/master/lib/python2.7/site-packages"
     os.environ["LD_LIBRARY_PATH"] = os.environ["YJJ_DEP_LIB"]
     os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-1.8.0"
 

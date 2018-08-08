@@ -18,14 +18,14 @@ PROJECT(kungfu_strategy_demo)
 ############################################################
 SET(TOOLCHAIN_DIR "/opt/kungfu/toolchain")
 
-SET(BOOST_INCLUDEDIR "${TOOLCHAIN_DIR}/boost-1.62.0/include")
-SET(BOOST_LIBRARYDIR "${TOOLCHAIN_DIR}/boost-1.62.0/lib")
+SET(BOOST_INCLUDEDIR "${TOOLCHAIN_DIR}/boost-1.67.0/include")
+SET(BOOST_LIBRARYDIR "${TOOLCHAIN_DIR}/boost-1.67.0/lib")
 
 SET(Boost_USE_MULTITHREADED ON)
 SET(Boost_USE_STATIC_LIBS OFF)
 SET(Boost_USE_STATIC_RUNTIME OFF)
 
-FIND_PACKAGE(Boost 1.62.0 COMPONENTS date_time filesystem system thread serialization math_tr1 python chrono regex program_options unit_test_framework  locale REQUIRED)
+FIND_PACKAGE(Boost 1.67.0 COMPONENTS date_time filesystem system thread serialization math_tr1 python chrono regex program_options unit_test_framework  locale REQUIRED)
 INCLUDE_DIRECTORIES(${BOOST_INCLUDEDIR})
 
 FIND_PACKAGE(PythonInterp)

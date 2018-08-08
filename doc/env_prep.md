@@ -44,7 +44,7 @@ Instruments for preparing independent kungfu environment
         
     * compiling kungfu and install kungfu
         * cp libpython2.7.so as libpython.so
-        * rename boost-1.62.0 in kungfu/build/cmake_install.cmake as boost-x.xx.x if anther version of boost is used
+        * rename boost-1.62.0 in kungfu/CMakeLists.txt as boost-x.xx.x if anther version of boost is used
         * rename `wheel` in kungfu/rpm/scripts/post_install.sh as `sudo` if system is ubuntu
     
     * modify kungfu/rpm/etc/sysconfig/kungfu (/opt/kungfu/master/etc/sysconfig/kungfu)

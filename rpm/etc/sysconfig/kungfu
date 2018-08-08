@@ -6,5 +6,5 @@ JAVA_HOME=/usr/lib/jvm/java-1.8.0
 BOOST_LIB=/opt/kungfu/master/lib/boost
 YJJ_LIB=/opt/kungfu/master/lib/yijinjing
 API_LIB=/opt/kungfu/master/lib64/api
-PYTHONPATH=/opt/kungfu/master/lib/boost:/opt/kungfu/master/lib/yijinjing:/opt/kungfu/master/lib64/api:/opt/kungfu/master/lib/wingchun
+PYTHONPATH=/opt/kungfu/master/lib/boost:/opt/kungfu/master/lib/yijinjing:/opt/kungfu/master/lib64/api:/opt/kungfu/master/lib/wingchun:/opt/kungfu/master/lib/python2.7/site-packages
 LD_LIBRARY_PATH=/opt/kungfu/master/lib/boost:/opt/kungfu/master/lib/yijinjing:/opt/kungfu/master/lib64/api:/opt/kungfu/master/lib/wingchun
