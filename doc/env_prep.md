@@ -51,5 +51,9 @@ Instruments for preparing independent kungfu environment
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
     * modify kungfu/rpm/bin/yjj (/opt/kungfu/master/bin/yjj)
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
+    
+    * if you want to run yjj command with sudo
+        * revise env_reset to env_keep+="PYTHONPATH"
 
 **Contributed by Aimin Huang.**
+**Supplemented by Fangxin Hu.**
