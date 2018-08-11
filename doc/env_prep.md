@@ -9,24 +9,39 @@ Instruments for preparing independent kungfu environment
 
     * install log4cplus [https://github.com/log4cplus/log4cplus]
         * take a look at issue: https://github.com/log4cplus/log4cplus/issues/169
-        
-    * install pid-2.1.1
-        * install dependency nose-1.3.7 first (yum install python-nose) (sudo apt install python-nose)
-        * install pip (sudo /usr/bin/pip install pid)
+        * tar xvzf log4cplus-x.x.x.tar.gz
+        * cd log4cplus-x.x.x
+        * sudo ./configure --prefix=/where/to/install (default is /usr/local)
+        * sudo make
+        * sudo make install
+
+    * install pid-2.1.1 [https://github.com/trbs/pid/]
+        * install dependency nose-1.3.7 first
+            * sudo apt install python-nose (yum install python-nose)
+        * install pip
+            * sudo apt install python-pip        
+        * install pid using pip
+            * sudo /usr/bin/pip install pid
 
     * install rfoo [https://github.com/aaiyer/rfoo]
-        * install dependency Cython first (sudo apt install cython)
-        * install rfoo by source (sudo /usr/bin/python setup.py build_ext --inplace; sudo /usr/bin/python setup.py install)
+        * install dependency Cython first
+            * sudo apt install cython
+        * install rfoo by source
+            * sudo /usr/bin/python setup.py build_ext --inplace
+            * sudo /usr/bin/python setup.py install
 
     * install supervisor
-        * install dependency meld3 (yum install python-meld3) (sudo apt install python-meld3)
-        * install supervisor (sudo apt install supervisor)
+        * install dependency meld3
+            * sudo apt install python-meld3 (yum install python-meld3)
+        * install supervisor
+            * sudo apt install supervisor
 
-    * install boost-1.62 (or other versions)
-        * install dependency libpython-dev (sudo apt install libpython-dev)
-        * make sure folder /opt/kungfu/toolchain/boost-1.62.0 exists
-        * ./bootstrap.sh --prefix=/opt/kungfu/toolchain/boost-1.62.0
-        * ./b2 install --prefix=/opt/kungfu/toolchain/boost-1.62.0
+    * install boost-1.6x
+        * install dependency libpython-dev
+            * sudo apt install libpython-dev
+        * make sure folder /opt/kungfu/toolchain/boost-1.6x.0 exists
+        * ./bootstrap.sh --prefix=/opt/kungfu/toolchain/boost-1.6x.0
+        * ./b2 install --prefix=/opt/kungfu/toolchain/boost-1.6x.0
 
     * install cmake-[3.8.*]
 
@@ -51,9 +66,10 @@ Instruments for preparing independent kungfu environment
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
     * modify kungfu/rpm/bin/yjj (/opt/kungfu/master/bin/yjj)
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
-    
+    * modify ~/.bashrc
+        * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
     * if you want to run yjj command with sudo
-        * revise env_reset to env_keep+="PYTHONPATH"
+        * revise env_reset to env_keep+="PYTHONPATH" in /etc/sudoers
 
 **Contributed by Aimin Huang.**
 **Supplemented by Fangxin Hu.**
