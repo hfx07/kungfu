@@ -21,7 +21,7 @@ import csv
 import libjournal
 import kungfu.longfist.longfist_utils as lfutil
 
-format_str = '%Y%m%d-%H:%M:%S'
+format_str = '%Y%m%d-%H:%M:%S.%f'
 format_d_str = format_str.replace('%', '&')
 
 def nanofstr(time_str, time_format=format_str):

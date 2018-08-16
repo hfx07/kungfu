@@ -51,7 +51,9 @@ class LFMarketDataField(Structure):
         ("BidPrice5", c_double),	# 申买价五 
         ("BidVolume5", c_int),	# 申买量五 
         ("AskPrice5", c_double),	# 申卖价五 
-        ("AskVolume5", c_int),	# 申卖量五 
+        ("AskVolume5", c_int),	# 申卖量五
+        ("AveragePrice", c_double), # 当日均价
+        ("ActionDay", c_char * 13), # 业务日期
         ]
 
 class LFL2MarketDataField(Structure):
@@ -665,6 +667,8 @@ DataFieldMap = {
 		'SettlementPrice': 'd',
 		'ExchangeInstID': 'c64',
 		'LowestPrice': 'd',
+        'AveragePrice': 'd',
+        'ActionDay': 'c13',
 	},
 	'LFRspPositionField': {
 		'InstrumentID': 'c31',

@@ -134,7 +134,7 @@ class RConsoleDaemon(object):
                 print 'rconsole server starting'
                 self.server = rfoo.UnixServer(ConsoleHandler, namespace)
                 self.server.start(rconsole_sock)
-                print 'rcosnole server stopped'
+                print 'rcosnole server started'
             except:
                 print('Error occurred when running rconsole: ', sys.exc_info())
 
@@ -142,7 +142,7 @@ class RConsoleDaemon(object):
         print 'Stopping rconsole daemon...'
         self.live = False
         if self.server != None:
-            self.server.stop()
+            self.server.close()
         print 'Stopped rconsole daemon'
 
 class KungFu(object):
