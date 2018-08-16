@@ -98,7 +98,21 @@ void PyWCStrategy::on_rtn_trade(const LFRtnTradeField* data, int request_id, sho
     }
 }
 
-void PyWCStrategy::on_rsp_order(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
+void PyWCStrategy::on_rsp_order_insert(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
+{
+    if (errorId != 0)
+    {
+        if (py_on_error != bp::object() && IWCDataProcessor::signal_received <= 0)
+        {
+            START_PYTHON_FUNC_CALLING
+            string error_msg = errorMsg;
+            py_on_error(errorId, error_msg, request_id, source, rcv_time);
+            END_PYTHON_FUNC_CALLING
+        }
+    }
+}
+
+void PyWCStrategy::on_rsp_order_action(const LFOrderActionField* data, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
 {
     if (errorId != 0)
     {

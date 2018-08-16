@@ -11,7 +11,8 @@
   * [on_l2_trade](#on_l2_trade) &emsp;&emsp;&emsp;&emsp; 逐笔成交信息回调函数
   * [on_rtn_order](#on_rtn_order) &emsp;&emsp;&emsp;&emsp; 下单回报回调函数 
   * [on_rtn_trade](#on_rtn_trade) &emsp;&emsp;&emsp;&emsp; 成交回报回调函数 
-  * [on_rsp_order](#on_rsp_order) &emsp;&emsp;&emsp;&emsp; 错误消息回调函数 
+  * [on_rsp_order_insert](#on_rsp_order_insert) &emsp;&emsp;&emsp;&emsp; 下单错误消息回调函数 
+  * [on_rsp_order_action](#on_rsp_order_action) &emsp;&emsp;&emsp;&emsp; 撤单错误消息回调函数 
   * [on_rsp_position](#on_rsp_position) &emsp;&emsp;&emsp;&emsp; 持仓返回回调函数
   * [on_switch_day](#on_switch_day) &emsp;&emsp;&emsp;&emsp; 换日回调函数
   * [on_td_login](#on_td_login) &emsp;&emsp;&emsp;&emsp; 连接交易接口状态返回回调函数
@@ -143,13 +144,26 @@
 |source|short|行情数据源|
 |rcv_time|long|收到行情纳秒时间|
 
-<h3 id="on_rsp_order">on_rsp_order(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId=0, const char* errorMsg=nullptr)</h3>
+<h3 id="on_rsp_order_insert">on_rsp_order_insert(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId=0, const char* errorMsg=nullptr)</h3>
 
 收到本策略下单（错误）信息返回时回调
 
 |参数|类型|参数说明|
 |:--:|:--:|:--:|
 |data|LFInputOrderField* |报单数据结构|
+|request_id|int|请求编号|
+|source|short|行情数据源|
+|rcv_time|long|收到行情纳秒时间|
+|errorId|short|错误 ID|
+|errorMsg| char* |错误信息|
+
+<h3 id="on_rsp_order_action">on_rsp_order_action(const LFOrderActionField* data, int request_id, short source, long rcv_time, short errorId=0, const char* errorMsg=nullptr)</h3>
+
+收到本策略撤单（错误）信息返回时回调
+
+|参数|类型|参数说明|
+|:--:|:--:|:--:|
+|data|LFOrderActionField* |撤单数据结构|
 |request_id|int|请求编号|
 |source|short|行情数据源|
 |rcv_time|long|收到行情纳秒时间|

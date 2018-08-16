@@ -95,7 +95,7 @@ void IWCStrategy::block()
 
 void IWCStrategy::on_market_data(const LFMarketDataField* data, short source, long rcv_time)
 {
-    KF_LOG_DEBUG(logger, "[market_data] (source)" << source << " (ticker)" << data->InstrumentID << " (lp)" << data->LastPrice);
+    KF_LOG_DEBUG(logger, "[market_data] (source)" << source << " (ticker)" << data->InstrumentID << " (lp)" << data->LastPrice << " (v)" << data->Volume << " (t)" << data->Turnover << " (bp1)" << data->BidPrice1 << " (bv1)" << data->BidVolume1 << " (ap1)" << data->AskPrice1 << " (av1)" << data->AskVolume1);
 }
 
 void IWCStrategy::on_market_data_level2(const LFL2MarketDataField* data, short source, long rcv_time)
@@ -120,20 +120,28 @@ void IWCStrategy::on_l2_trade(const LFL2TradeField* data, short source, long rcv
 
 void IWCStrategy::on_rtn_order(const LFRtnOrderField* data, int request_id, short source, long rcv_time)
 {
-    KF_LOG_DEBUG(logger, "[rtn_order] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (status)" << data->OrderStatus);
+    KF_LOG_DEBUG(logger, "[rtn_order] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v_rmn)" << data->VolumeTotal << " (v_trd)" << data->VolumeTraded << " (direction)" << data->Direction << " (offset)" << data->OffsetFlag << " (status)" << data->OrderStatus);
 }
 
 void IWCStrategy::on_rtn_trade(const LFRtnTradeField* data, int request_id, short source, long rcv_time)
 {
-    KF_LOG_DEBUG(logger, "[rtn_trade] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->Price << " (v)" << data->Volume);
+    KF_LOG_DEBUG(logger, "[rtn_trade] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->Price << " (v)" << data->Volume << " (direction)" << data->Direction << " (offset)" << data->OffsetFlag);
 }
 
-void IWCStrategy::on_rsp_order(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
+void IWCStrategy::on_rsp_order_insert(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
 {
     if (errorId == 0)
-        KF_LOG_DEBUG(logger, "[rsp_order] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v)" << data->Volume);
+        KF_LOG_DEBUG(logger, "[rsp_order_insert] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v)" << data->Volume << " (direction)" << data->Direction << " (offset)" << data->OffsetFlag);
     else
-        KF_LOG_ERROR(logger, "[rsp_order] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v)" << data->Volume << " (errId)" << errorId << " (errMsg)" << errorMsg);
+        KF_LOG_ERROR(logger, "[rsp_order_insert] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v)" << data->Volume << " (direction)" << data->Direction << " (offset)" << data->OffsetFlag << " (errId)" << errorId << " (errMsg)" << errorMsg);
+}
+
+void IWCStrategy::on_rsp_order_action(const LFOrderActionField* data, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
+{
+    if (errorId == 0)
+        KF_LOG_DEBUG(logger, "[rsp_order_action] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v)" << data->VolumeChange << " (action)" << data->ActionFlag);
+    else
+        KF_LOG_ERROR(logger, "[rsp_order_action] (source)" << source << " (rid)" << request_id << " (ticker)" << data->InstrumentID << " (p)" << data->LimitPrice << " (v)" << data->VolumeChange << " (action)" << data->ActionFlag << " (errId)" << errorId << " (errMsg)" << errorMsg);
 }
 
 void IWCStrategy::on_rsp_position(const PosHandlerPtr posMap, int request_id, short source, long rcv_time)
@@ -147,7 +155,7 @@ void IWCStrategy::on_market_bar(const BarMdMap& data, int min_interval, short so
     for (auto &iter: data)
     {
         const LFBarMarketDataField& bar = iter.second;
-        KF_LOG_DEBUG(logger, "[bar] (ticker)" << iter.first << " (o)" << bar.Open << " (h)" << bar.High << " (l)" << bar.Low << " (c)" << bar.Close);
+        KF_LOG_DEBUG(logger, "[market_bar] (ticker)" << iter.first << " (o)" << bar.Open << " (h)" << bar.High << " (l)" << bar.Low << " (c)" << bar.Close);
     }
 }
 
@@ -228,28 +236,36 @@ int IWCStrategy::insert_market_order(short source, string instrument_id, string 
 {
     CHECK_TD_READY(source);
     CHECK_EXCHANGE_AND_OFFSET(exchange_id, offset);
-    return util->insert_market_order(source, instrument_id, exchange_id, volume, direction, offset);
+    int rid = util->insert_market_order(source, instrument_id, exchange_id, volume, direction, offset);
+    KF_LOG_DEBUG(logger, "[insert_market_order] (source)" << source << " (rid)" << rid << " (ticker)" << instrument_id << " (exchange)" << exchange_id << " (v)" << volume << " (direction)" << direction << " (offset)" << offset);
+    return rid;
 }
 
 int IWCStrategy::insert_limit_order(short source, string instrument_id, string exchange_id, double price, int volume, LfDirectionType direction, LfOffsetFlagType offset)
 {
     CHECK_TD_READY(source);
     CHECK_EXCHANGE_AND_OFFSET(exchange_id, offset);
-    return util->insert_limit_order(source, instrument_id, exchange_id, price, volume, direction, offset);
+    int rid = util->insert_limit_order(source, instrument_id, exchange_id, price, volume, direction, offset);
+    KF_LOG_DEBUG(logger, "[insert_limit_order] (source)" << source << " (rid)" << rid << " (ticker)" << instrument_id << " (exchange)" << exchange_id << " (p)" << price << " (v)" << volume << " (direction)" << direction << " (offset)" << offset);
+    return rid;
 }
 
 int IWCStrategy::insert_fok_order(short source, string instrument_id, string exchange_id, double price, int volume, LfDirectionType direction, LfOffsetFlagType offset)
 {
     CHECK_TD_READY(source);
     CHECK_EXCHANGE_AND_OFFSET(exchange_id, offset);
-    return util->insert_fok_order(source, instrument_id, exchange_id, price, volume, direction, offset);
+    int rid = util->insert_fok_order(source, instrument_id, exchange_id, price, volume, direction, offset);
+    KF_LOG_DEBUG(logger, "[insert_fok_order] (source)" << source << " (rid)" << rid << " (ticker)" << instrument_id << " (exchange)" << exchange_id << " (p)" << price << " (v)" << volume << " (direction)" << direction << " (offset)" << offset);
+    return rid;
 }
 
 int IWCStrategy::insert_fak_order(short source, string instrument_id, string exchange_id, double price, int volume, LfDirectionType direction, LfOffsetFlagType offset)
 {
     CHECK_TD_READY(source);
     CHECK_EXCHANGE_AND_OFFSET(exchange_id, offset);
-    return util->insert_fak_order(source, instrument_id, exchange_id, price, volume, direction, offset);
+    int rid = util->insert_fak_order(source, instrument_id, exchange_id, price, volume, direction, offset);
+    KF_LOG_DEBUG(logger, "[insert_fak_order] (source)" << source << " (rid)" << rid << " (ticker)" << instrument_id << " (exchange)" << exchange_id << " (p)" << price << " (v)" << volume << " (direction)" << direction << " (offset)" << offset);
+    return rid;
 }
 
 int IWCStrategy::req_position(short source)
@@ -259,11 +275,15 @@ int IWCStrategy::req_position(short source)
         KF_LOG_ERROR(logger, "td (" << source << ") connection is failed. please check TD or yjj status");
         return -1;
     }
-    return util->req_position(source);
+    int rid = util->req_position(source);
+    KF_LOG_DEBUG(logger, "[req_position] (source)" << source);
+    return rid;
 }
 
 int IWCStrategy::cancel_order(short source, int order_id)
 {
     CHECK_TD_READY(source);
-    return util->cancel_order(source, order_id);
+    int rid = util->cancel_order(source, order_id);
+    KF_LOG_DEBUG(logger, "[cancel_order] (source)" << source << " (rid)" << rid << " (order_id)" << order_id);
+    return rid;
 }

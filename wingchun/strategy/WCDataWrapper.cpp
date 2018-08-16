@@ -258,8 +258,14 @@ void WCDataWrapper::run()
                         }
                         case MSG_TYPE_LF_ORDER:
                         {
-                            processor->on_rsp_order((LFInputOrderField *) data, request_id, msg_source, cur_time,
-                                                    frame->getErrorId(), frame->getErrorMsg());
+                            processor->on_rsp_order_insert((LFInputOrderField *) data, request_id, msg_source, cur_time,
+                                                           frame->getErrorId(), frame->getErrorMsg());
+                            break;
+                        }
+                        case MSG_TYPE_LF_ORDER_ACTION:
+                        {
+                            processor->on_rsp_order_action((LFOrderActionField *) data, request_id, msg_source, cur_time,
+                                                           frame->getErrorId(), frame->getErrorMsg());
                             break;
                         }
                         case MSG_TYPE_LF_RTN_ORDER:

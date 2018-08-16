@@ -28,7 +28,7 @@ USING_WC_NAMESPACE
 
 TDEngineXTP::TDEngineXTP(): ITDEngine(SOURCE_XTP), api(nullptr), front_port(-1), client_id(-1)
 {
-    logger = yijinjing::KfLog::getLogger("TradeEngine.XTP");
+    logger = yijinjing::KfLog::getLogger("TdEngine.XTP");
 }
 
 void TDEngineXTP::init()

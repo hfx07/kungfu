@@ -63,7 +63,7 @@ set(CPACK_RESOURCE_FILE_WELCOME "/usr/local/share/cmake-3.11/Templates/CPack.Gen
 set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
 set(CPACK_RPM_PACKAGE_AUTOREQ " no")
 set(CPACK_RPM_PACKAGE_GROUP "kungfu")
-set(CPACK_RPM_PACKAGE_RELEASE "20180809010131")
+set(CPACK_RPM_PACKAGE_RELEASE "20180817014708")
 set(CPACK_RPM_PACKAGE_REQUIRES "rfoo >= 1.3.1, pid >= 2.1.1, log4cplus2 == 2.0.0_RC1, supervisor >= 3.1.0")
 set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "/home/hufx/kungfu/rpm/scripts/post_install.sh")
 set(CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "/home/hufx/kungfu/rpm/scripts/post_uninstall.sh")

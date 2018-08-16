@@ -43,7 +43,7 @@ public:
     virtual void on_market_data(const LFMarketDataField* data, short source, long rcv_time);
     virtual void on_rsp_position(const PosHandlerPtr posMap, int request_id, short source, long rcv_time);
     virtual void on_rtn_trade(const LFRtnTradeField* data, int request_id, short source, long rcv_time);
-    virtual void on_rsp_order(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId=0, const char* errorMsg=nullptr);
+    virtual void on_rsp_order_insert(const LFInputOrderField* data, int request_id, short source, long rcv_time, short errorId=0, const char* errorMsg=nullptr);
 
 public:
     Strategy(const string& name);
@@ -205,7 +205,7 @@ void Strategy::on_rtn_trade(const LFRtnTradeField* rtn_trade, int request_id, sh
     }
 }
 
-void Strategy::on_rsp_order(const LFInputOrderField* order, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
+void Strategy::on_rsp_order_insert(const LFInputOrderField* order, int request_id, short source, long rcv_time, short errorId, const char* errorMsg)
 {
     if (errorId != 0)
         KF_LOG_ERROR(logger, " (err_id)" << errorId << " (err_msg)" << errorMsg << "(order_id)" << request_id << " (source)" << source);

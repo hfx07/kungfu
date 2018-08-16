@@ -27,7 +27,7 @@ USING_WC_NAMESPACE
 
 TDEngineCTP::TDEngineCTP(): ITDEngine(SOURCE_CTP),need_settleConfirm(true), need_authenticate(false), curAccountIdx(-1)
 {
-    logger = yijinjing::KfLog::getLogger("TradeEngine.CTP");
+    logger = yijinjing::KfLog::getLogger("TdEngine.CTP");
     KF_LOG_INFO(logger, "[ATTENTION] default to confirm settlement and no authentication!");
 }
 

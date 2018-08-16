@@ -288,7 +288,7 @@ void ITDEngine::on_rsp_order_insert(const LFInputOrderField* order, int requestI
     }
 }
 /** on rsp order action, engine (on_data) */
-void ITDEngine::on_rsp_order_action(const LFOrderActionField *action, int requestId, int errorId, const char *errorMsg)
+void ITDEngine::on_rsp_order_action(const LFOrderActionField* action, int requestId, int errorId, const char* errorMsg)
 {
     if (errorId == 0)
     {

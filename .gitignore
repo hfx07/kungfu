@@ -50,8 +50,8 @@ Debug/
 *_build/
 */tmp/
 *.pyc
-#*.rpm
-build/*[!*.deb]
+*.rpm
+build/
 
 cmake-build-debug/
 extra_dump.py
