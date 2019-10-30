@@ -40,8 +40,12 @@ class DIRECTION:
 class OFFSET:
     Open = '0' #开仓
     Close = '1' #平仓
+    ForceClose = '2' #强平
     CloseToday = '3' #平今
     CloseYesterday = '4' #平昨
+    ForceOff = '5' #强减
+    LocalForceClose = '6' #本地强平
+    Non = 'N' #不分开平
 
 ###################################
 # LfOrderPriceTypeType: 报单价格条件
@@ -50,6 +54,19 @@ class PRICE_TYPE:
     AnyPrice = '1' #任意价
     LimitPrice = '2' #限价
     BestPrice = '3' #最优价
+    LastPrice = '4' #最新价
+    LastPricePlusOneTicks = '5' #最新价浮动上浮1个ticks
+    LastPricePlusTwoTicks = '6' #最新价浮动上浮2个ticks
+    LastPricePlusThreeTicks = '7' #最新价浮动上浮3个ticks
+    AskPrice1 = '8' #卖一价
+    AskPrice1PlusOneTicks = '9' #卖一价浮动上浮1个ticks
+    AskPrice1PlusTwoTicks = 'A' #卖一价浮动上浮2个ticks
+    AskPrice1PlusThreeTicks = 'B' #卖一价浮动上浮3个ticks
+    BidPrice1 = 'C' #买一价
+    BidPrice1PlusOneTicks = 'D' #买一价浮动上浮1个ticks
+    BidPrice1PlusTwoTicks = 'E' #买一价浮动上浮2个ticks
+    BidPrice1PlusThreeTicks = 'F' #买一价浮动上浮3个ticks
+    FiveLevelPrice = 'G' #五档价
 
 ###################################
 # LfOrderStatusType: 报单状态

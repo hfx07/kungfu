@@ -94,7 +94,9 @@ class LfHedgeFlagType:
     Speculation = '1' #投机
     Argitrage = '2' #套利
     Hedge = '3' #套保
-    MarketMaker = '4' #做市商(femas)
+    MarketMaker = '5' #做市商
+    SpecHedge = '6' #第一腿投机第二腿套保 大商所专用
+    HedgeSpec = '7' #第一腿套保第二腿投机 大商所专用
     AllValue = '9' #匹配所有的值(femas)
 
 ###################################
@@ -117,6 +119,19 @@ class LfOrderPriceTypeType:
     AnyPrice = '1' #任意价
     LimitPrice = '2' #限价
     BestPrice = '3' #最优价
+    LastPrice = '4' #最新价
+    LastPricePlusOneTicks = '5' #最新价浮动上浮1个ticks
+    LastPricePlusTwoTicks = '6' #最新价浮动上浮2个ticks
+    LastPricePlusThreeTicks = '7' #最新价浮动上浮3个ticks
+    AskPrice1 = '8' #卖一价
+    AskPrice1PlusOneTicks = '9' #卖一价浮动上浮1个ticks
+    AskPrice1PlusTwoTicks = 'A' #卖一价浮动上浮2个ticks
+    AskPrice1PlusThreeTicks = 'B' #卖一价浮动上浮3个ticks
+    BidPrice1 = 'C' #买一价
+    BidPrice1PlusOneTicks = 'D' #买一价浮动上浮1个ticks
+    BidPrice1PlusTwoTicks = 'E' #买一价浮动上浮2个ticks
+    BidPrice1PlusThreeTicks = 'F' #买一价浮动上浮3个ticks
+    FiveLevelPrice = 'G' #五档价
 
 ###################################
 # LfOrderStatusType: 报单状态
@@ -285,7 +300,9 @@ LfHedgeFlagTypeMap = {
     '1': 'Speculation',
     '2': 'Argitrage',
     '3': 'Hedge',
-    '4': 'MarketMaker',
+    '5': 'MarketMaker',
+    '6': 'SpecHedge',
+    '7': 'HedgeSpec',
     '9': 'AllValue',
 }
 
@@ -304,6 +321,19 @@ LfOrderPriceTypeTypeMap = {
     '1': 'AnyPrice',
     '2': 'LimitPrice',
     '3': 'BestPrice',
+    '4': 'LastPrice',
+    '5': 'LastPricePlusOneTicks',
+    '6': 'LastPricePlusTwoTicks',
+    '7': 'LastPricePlusThreeTicks',
+    '8': 'AskPrice1',
+    '9': 'AskPrice1PlusOneTicks',
+    'A': 'AskPrice1PlusTwoTicks',
+    'B': 'AskPrice1PlusThreeTicks',
+    'C': 'BidPrice1',
+    'D': 'BidPrice1PlusOneTicks',
+    'E': 'BidPrice1PlusTwoTicks',
+    'F': 'BidPrice1PlusThreeTicks',
+    'G': 'FiveLevelPrice',
 }
 
 LfOrderStatusTypeMap = {

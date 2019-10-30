@@ -9,7 +9,7 @@ Instruments for preparing independent kungfu environment
 
     * install log4cplus [https://github.com/log4cplus/log4cplus]
         * take a look at issue: https://github.com/log4cplus/log4cplus/issues/169
-        * tar xvzf log4cplus-x.x.x.tar.gz
+        * tar xvjf log4cplus-x.x.x.tar.bz2
         * cd log4cplus-x.x.x
         * sudo ./configure --prefix=/where/to/install (default is /usr/local)
         * sudo make
@@ -61,11 +61,12 @@ Instruments for preparing independent kungfu environment
         * cp libpython2.7.so as libpython.so
         * rename boost-1.62.0 in kungfu/CMakeLists.txt as boost-x.xx.x if anther version of boost is used
         * rename `wheel` in kungfu/rpm/scripts/post_install.sh as `sudo` if system is ubuntu
-    
     * modify kungfu/rpm/etc/sysconfig/kungfu (/opt/kungfu/master/etc/sysconfig/kungfu)
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
     * modify kungfu/rpm/bin/yjj (/opt/kungfu/master/bin/yjj)
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
+
+
     * modify ~/.bashrc
         * add /opt/kungfu/master/lib/python2.7/site-packages into PYTHONPATH
     * if you want to run yjj command with sudo

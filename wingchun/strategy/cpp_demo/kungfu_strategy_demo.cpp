@@ -4,12 +4,9 @@
  * @since   Nov, 2017
  */
 
-#include "IWCStrategy.h"
-#include "Timer.h"
+#include "StrategyEngine.h"
 #include <deque>
 #include <iostream>
-
-USING_WC_NAMESPACE
 
 #define SOURCE_INDEX SOURCE_CTP
 #define M_TICKER "rb1801"

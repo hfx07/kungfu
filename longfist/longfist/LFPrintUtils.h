@@ -11,15 +11,15 @@
 
 namespace LF_UTIL_PRINTER_CTP
 {
-	#include "../api/ctp/v6.3.6_20160606/include/ThostFtdcUserApiStruct.h"
+	#include "../api/ctp/v6.3.15_20190220_se_linux64/include/ThostFtdcUserApiStruct.h"
 }
 
 // Macro to print struct content
 #define PRINT_MD(ptr) ""\
-	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c13)" << " " << ptr->TradingDay << std::endl \
+	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c9)" << " " << ptr->TradingDay << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
 	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
-	 << std::setw(20) << "ExchangeInstID:" << std::setw(6) << "(c64)" << " " << ptr->ExchangeInstID << std::endl \
+	 << std::setw(20) << "ExchangeInstID:" << std::setw(6) << "(c31)" << " " << ptr->ExchangeInstID << std::endl \
 	 << std::setw(20) << "LastPrice:" << std::setw(6) << "(d)" << " " << ptr->LastPrice << std::endl \
 	 << std::setw(20) << "PreSettlementPrice:" << std::setw(6) << "(d)" << " " << ptr->PreSettlementPrice << std::endl \
 	 << std::setw(20) << "PreClosePrice:" << std::setw(6) << "(d)" << " " << ptr->PreClosePrice << std::endl \
@@ -36,7 +36,7 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "LowerLimitPrice:" << std::setw(6) << "(d)" << " " << ptr->LowerLimitPrice << std::endl \
 	 << std::setw(20) << "PreDelta:" << std::setw(6) << "(d)" << " " << ptr->PreDelta << std::endl \
 	 << std::setw(20) << "CurrDelta:" << std::setw(6) << "(d)" << " " << ptr->CurrDelta << std::endl \
-	 << std::setw(20) << "UpdateTime:" << std::setw(6) << "(c13)" << " " << ptr->UpdateTime << std::endl \
+	 << std::setw(20) << "UpdateTime:" << std::setw(6) << "(c9)" << " " << ptr->UpdateTime << std::endl \
 	 << std::setw(20) << "UpdateMillisec:" << std::setw(6) << "(i)" << " " << (int)ptr->UpdateMillisec << std::endl \
 	 << std::setw(20) << "BidPrice1:" << std::setw(6) << "(d)" << " " << ptr->BidPrice1 << std::endl \
 	 << std::setw(20) << "BidVolume1:" << std::setw(6) << "(i)" << " " << (int)ptr->BidVolume1 << std::endl \
@@ -59,7 +59,7 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "AskPrice5:" << std::setw(6) << "(d)" << " " << ptr->AskPrice5 << std::endl \
 	 << std::setw(20) << "AskVolume5:" << std::setw(6) << "(i)" << " " << (int)ptr->AskVolume5 << std::endl \
 	 << std::setw(20) << "AveragePrice:" << std::setw(6) << "(d)" << " " << ptr->AveragePrice << std::endl \
-	 << std::setw(20) << "ActionDay:" << std::setw(6) << "(c13)" << " " << ptr->ActionDay << std::endl \
+	 << std::setw(20) << "ActionDay:" << std::setw(6) << "(c9)" << " " << ptr->ActionDay << std::endl \
 	
 #define PRINT_L2_MD(ptr) ""\
 	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c9)" << " " << ptr->TradingDay << std::endl \
@@ -227,7 +227,7 @@ namespace LF_UTIL_PRINTER_CTP
 	
 #define PRINT_QRY_POS(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
 	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	
@@ -236,7 +236,8 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "YdPosition:" << std::setw(6) << "(i)" << " " << (int)ptr->YdPosition << std::endl \
 	 << std::setw(20) << "Position:" << std::setw(6) << "(i)" << " " << (int)ptr->Position << std::endl \
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	 << std::setw(20) << "PositionCost:" << std::setw(6) << "(d)" << " " << ptr->PositionCost << std::endl \
 	 << std::setw(20) << "HedgeFlag:" << std::setw(6) << "(t)" << " " << getLfHedgeFlagType(ptr->HedgeFlag) << std::endl \
 	 << std::setw(20) << "PosiDirection:" << std::setw(6) << "(t)" << " " << getLfPosiDirectionType(ptr->PosiDirection) << std::endl \
@@ -244,11 +245,11 @@ namespace LF_UTIL_PRINTER_CTP
 #define PRINT_ORDER(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
 	 << std::setw(20) << "UserID:" << std::setw(6) << "(c16)" << " " << ptr->UserID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "BusinessUnit:" << std::setw(6) << "(c21)" << " " << ptr->BusinessUnit << std::endl \
 	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
-	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c21)" << " " << ptr->OrderRef << std::endl \
+	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c13)" << " " << ptr->OrderRef << std::endl \
 	 << std::setw(20) << "LimitPrice:" << std::setw(6) << "(d)" << " " << ptr->LimitPrice << std::endl \
 	 << std::setw(20) << "Volume:" << std::setw(6) << "(i)" << " " << (int)ptr->Volume << std::endl \
 	 << std::setw(20) << "MinVolume:" << std::setw(6) << "(i)" << " " << (int)ptr->MinVolume << std::endl \
@@ -268,11 +269,11 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
 	 << std::setw(20) << "UserID:" << std::setw(6) << "(c16)" << " " << ptr->UserID << std::endl \
 	 << std::setw(20) << "ParticipantID:" << std::setw(6) << "(c11)" << " " << ptr->ParticipantID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "BusinessUnit:" << std::setw(6) << "(c21)" << " " << ptr->BusinessUnit << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
-	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c21)" << " " << ptr->OrderRef << std::endl \
-	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c11)" << " " << ptr->ExchangeID << std::endl \
+	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c13)" << " " << ptr->OrderRef << std::endl \
+	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	 << std::setw(20) << "LimitPrice:" << std::setw(6) << "(d)" << " " << ptr->LimitPrice << std::endl \
 	 << std::setw(20) << "VolumeTraded:" << std::setw(6) << "(i)" << " " << (int)ptr->VolumeTraded << std::endl \
 	 << std::setw(20) << "VolumeTotal:" << std::setw(6) << "(i)" << " " << (int)ptr->VolumeTotal << std::endl \
@@ -289,31 +290,31 @@ namespace LF_UTIL_PRINTER_CTP
 #define PRINT_RTN_TRADE(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
 	 << std::setw(20) << "UserID:" << std::setw(6) << "(c16)" << " " << ptr->UserID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "BusinessUnit:" << std::setw(6) << "(c21)" << " " << ptr->BusinessUnit << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
-	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c21)" << " " << ptr->OrderRef << std::endl \
-	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c11)" << " " << ptr->ExchangeID << std::endl \
+	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c13)" << " " << ptr->OrderRef << std::endl \
+	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	 << std::setw(20) << "TradeID:" << std::setw(6) << "(c21)" << " " << ptr->TradeID << std::endl \
-	 << std::setw(20) << "OrderSysID:" << std::setw(6) << "(c31)" << " " << ptr->OrderSysID << std::endl \
+	 << std::setw(20) << "OrderSysID:" << std::setw(6) << "(c21)" << " " << ptr->OrderSysID << std::endl \
 	 << std::setw(20) << "ParticipantID:" << std::setw(6) << "(c11)" << " " << ptr->ParticipantID << std::endl \
-	 << std::setw(20) << "ClientID:" << std::setw(6) << "(c21)" << " " << ptr->ClientID << std::endl \
+	 << std::setw(20) << "ClientID:" << std::setw(6) << "(c11)" << " " << ptr->ClientID << std::endl \
 	 << std::setw(20) << "Price:" << std::setw(6) << "(d)" << " " << ptr->Price << std::endl \
 	 << std::setw(20) << "Volume:" << std::setw(6) << "(i)" << " " << (int)ptr->Volume << std::endl \
-	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c13)" << " " << ptr->TradingDay << std::endl \
-	 << std::setw(20) << "TradeTime:" << std::setw(6) << "(c13)" << " " << ptr->TradeTime << std::endl \
+	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c9)" << " " << ptr->TradingDay << std::endl \
+	 << std::setw(20) << "TradeTime:" << std::setw(6) << "(c9)" << " " << ptr->TradeTime << std::endl \
 	 << std::setw(20) << "Direction:" << std::setw(6) << "(t)" << " " << getLfDirectionType(ptr->Direction) << std::endl \
 	 << std::setw(20) << "OffsetFlag:" << std::setw(6) << "(t)" << " " << getLfOffsetFlagType(ptr->OffsetFlag) << std::endl \
 	 << std::setw(20) << "HedgeFlag:" << std::setw(6) << "(t)" << " " << getLfHedgeFlagType(ptr->HedgeFlag) << std::endl \
 	
 #define PRINT_ORDER_ACTION(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
-	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c11)" << " " << ptr->ExchangeID << std::endl \
+	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	 << std::setw(20) << "UserID:" << std::setw(6) << "(c16)" << " " << ptr->UserID << std::endl \
-	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c21)" << " " << ptr->OrderRef << std::endl \
-	 << std::setw(20) << "OrderSysID:" << std::setw(6) << "(c31)" << " " << ptr->OrderSysID << std::endl \
+	 << std::setw(20) << "OrderRef:" << std::setw(6) << "(c13)" << " " << ptr->OrderRef << std::endl \
+	 << std::setw(20) << "OrderSysID:" << std::setw(6) << "(c21)" << " " << ptr->OrderSysID << std::endl \
 	 << std::setw(20) << "RequestID:" << std::setw(6) << "(i)" << " " << (int)ptr->RequestID << std::endl \
 	 << std::setw(20) << "ActionFlag:" << std::setw(6) << "(c)" << " " << ptr->ActionFlag << std::endl \
 	 << std::setw(20) << "LimitPrice:" << std::setw(6) << "(d)" << " " << ptr->LimitPrice << std::endl \
@@ -322,15 +323,15 @@ namespace LF_UTIL_PRINTER_CTP
 	
 #define PRINT_QRY_ACCOUNT(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	
 #define PRINT_RSP_ACCOUNT(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "PreMortgage:" << std::setw(6) << "(d)" << " " << ptr->PreMortgage << std::endl \
 	 << std::setw(20) << "PreCredit:" << std::setw(6) << "(d)" << " " << ptr->PreCredit << std::endl \
 	 << std::setw(20) << "PreDeposit:" << std::setw(6) << "(d)" << " " << ptr->PreDeposit << std::endl \
-	 << std::setw(20) << "preBalance:" << std::setw(6) << "(d)" << " " << ptr->preBalance << std::endl \
+	 << std::setw(20) << "PreBalance:" << std::setw(6) << "(d)" << " " << ptr->PreBalance << std::endl \
 	 << std::setw(20) << "PreMargin:" << std::setw(6) << "(d)" << " " << ptr->PreMargin << std::endl \
 	 << std::setw(20) << "Deposit:" << std::setw(6) << "(d)" << " " << ptr->Deposit << std::endl \
 	 << std::setw(20) << "Withdraw:" << std::setw(6) << "(d)" << " " << ptr->Withdraw << std::endl \
@@ -365,7 +366,7 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c9)" << " " << ptr->TradingDay << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
 	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
-	 << std::setw(20) << "ExchangeInstID:" << std::setw(6) << "(c64)" << " " << ptr->ExchangeInstID << std::endl \
+	 << std::setw(20) << "ExchangeInstID:" << std::setw(6) << "(c31)" << " " << ptr->ExchangeInstID << std::endl \
 	 << std::setw(20) << "LastPrice:" << std::setw(6) << "(d)" << " " << ptr->LastPrice << std::endl \
 	 << std::setw(20) << "PreSettlementPrice:" << std::setw(6) << "(d)" << " " << ptr->PreSettlementPrice << std::endl \
 	 << std::setw(20) << "PreClosePrice:" << std::setw(6) << "(d)" << " " << ptr->PreClosePrice << std::endl \
@@ -411,6 +412,7 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
 	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
+	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->InvestorID << std::endl \
 	
 #define PRINT_RSP_POS_CTP(ptr) ""\
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
@@ -420,6 +422,7 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "Position:" << std::setw(6) << "(i)" << " " << (int)ptr->Position << std::endl \
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
 	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "PositionCost:" << std::setw(6) << "(d)" << " " << ptr->PositionCost << std::endl \
 	 << std::setw(20) << "HedgeFlag:" << std::setw(6) << "(t)" << " " << getLfHedgeFlagType(ptr->HedgeFlag) << std::endl \
 	 << std::setw(20) << "PosiDirection:" << std::setw(6) << "(t)" << " " << getLfPosiDirectionType(ptr->PosiDirection) << std::endl \
@@ -427,7 +430,7 @@ namespace LF_UTIL_PRINTER_CTP
 #define PRINT_ORDER_CTP(ptr) ""\
 	 << std::setw(20) << "BrokerID:" << std::setw(6) << "(c11)" << " " << ptr->BrokerID << std::endl \
 	 << std::setw(20) << "UserID:" << std::setw(6) << "(c16)" << " " << ptr->UserID << std::endl \
-	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c19)" << " " << ptr->InvestorID << std::endl \
+	 << std::setw(20) << "InvestorID:" << std::setw(6) << "(c13)" << " " << ptr->InvestorID << std::endl \
 	 << std::setw(20) << "BusinessUnit:" << std::setw(6) << "(c21)" << " " << ptr->BusinessUnit << std::endl \
 	 << std::setw(20) << "ExchangeID:" << std::setw(6) << "(c9)" << " " << ptr->ExchangeID << std::endl \
 	 << std::setw(20) << "InstrumentID:" << std::setw(6) << "(c31)" << " " << ptr->InstrumentID << std::endl \
@@ -482,7 +485,7 @@ namespace LF_UTIL_PRINTER_CTP
 	 << std::setw(20) << "ClientID:" << std::setw(6) << "(c11)" << " " << ptr->ClientID << std::endl \
 	 << std::setw(20) << "Price:" << std::setw(6) << "(d)" << " " << ptr->Price << std::endl \
 	 << std::setw(20) << "Volume:" << std::setw(6) << "(i)" << " " << (int)ptr->Volume << std::endl \
-	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c13)" << " " << ptr->TradingDay << std::endl \
+	 << std::setw(20) << "TradingDay:" << std::setw(6) << "(c9)" << " " << ptr->TradingDay << std::endl \
 	 << std::setw(20) << "TradeTime:" << std::setw(6) << "(c9)" << " " << ptr->TradeTime << std::endl \
 	 << std::setw(20) << "Direction:" << std::setw(6) << "(t)" << " " << getLfDirectionType(ptr->Direction) << std::endl \
 	 << std::setw(20) << "OffsetFlag:" << std::setw(6) << "(t)" << " " << getLfOffsetFlagType(ptr->OffsetFlag) << std::endl \

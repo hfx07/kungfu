@@ -10,10 +10,10 @@ from longfist_structs_sniffer import *
 
 class LFMarketDataField(Structure):
     _fields_ = [
-        ("TradingDay", c_char * 13),	# 交易日 
+        ("TradingDay", c_char * 9),	# 交易日 
         ("InstrumentID", c_char * 31),	# 合约代码 
         ("ExchangeID", c_char * 9),	# 交易所代码 
-        ("ExchangeInstID", c_char * 64),	# 合约在交易所的代码 
+        ("ExchangeInstID", c_char * 31),	# 合约在交易所的代码 
         ("LastPrice", c_double),	# 最新价 
         ("PreSettlementPrice", c_double),	# 上次结算价 
         ("PreClosePrice", c_double),	# 昨收盘 
@@ -30,7 +30,7 @@ class LFMarketDataField(Structure):
         ("LowerLimitPrice", c_double),	# 跌停板价 
         ("PreDelta", c_double),	# 昨虚实度 
         ("CurrDelta", c_double),	# 今虚实度 
-        ("UpdateTime", c_char * 13),	# 最后修改时间 
+        ("UpdateTime", c_char * 9),	# 最后修改时间 
         ("UpdateMillisec", c_int),	# 最后修改毫秒 
         ("BidPrice1", c_double),	# 申买价一 
         ("BidVolume1", c_int),	# 申买量一 
@@ -53,7 +53,7 @@ class LFMarketDataField(Structure):
         ("AskPrice5", c_double),	# 申卖价五 
         ("AskVolume5", c_int),	# 申卖量五
         ("AveragePrice", c_double), # 当日均价
-        ("ActionDay", c_char * 13), # 业务日期
+        ("ActionDay", c_char * 9), # 业务日期
         ]
 
 class LFL2MarketDataField(Structure):
@@ -233,7 +233,7 @@ class LFBarMarketDataField(Structure):
 class LFQryPositionField(Structure):
     _fields_ = [
         ("BrokerID", c_char * 11),	# 经纪公司代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ("InstrumentID", c_char * 31),	# 合约代码 
         ("ExchangeID", c_char * 9),	# 交易所代码 
         ]
@@ -244,7 +244,8 @@ class LFRspPositionField(Structure):
         ("YdPosition", c_int),	# 上日持仓 
         ("Position", c_int),	# 总持仓 
         ("BrokerID", c_char * 11),	# 经纪公司代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
+        ("ExchangeID", c_char * 9),	# 交易所代码 
         ("PositionCost", c_double),	# 持仓成本 
         ("HedgeFlag", c_char),	# 投机套保标志 LfHedgeFlagType
         ("PosiDirection", c_char),	# 持仓多空方向 LfPosiDirectionType
@@ -254,11 +255,11 @@ class LFInputOrderField(Structure):
     _fields_ = [
         ("BrokerID", c_char * 11),	# 经纪公司代码 
         ("UserID", c_char * 16),	# 用户代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ("BusinessUnit", c_char * 21),	# 业务单元 
         ("ExchangeID", c_char * 9),	# 交易所代码 
         ("InstrumentID", c_char * 31),	# 合约代码 
-        ("OrderRef", c_char * 21),	# 报单引用 
+        ("OrderRef", c_char * 13),	# 报单引用 
         ("LimitPrice", c_double),	# 价格 
         ("Volume", c_int),	# 数量 
         ("MinVolume", c_int),	# 最小成交量 
@@ -280,11 +281,11 @@ class LFRtnOrderField(Structure):
         ("BrokerID", c_char * 11),	# 经纪公司代码 
         ("UserID", c_char * 16),	# 用户代码 
         ("ParticipantID", c_char * 11),	# 会员代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ("BusinessUnit", c_char * 21),	# 业务单元 
         ("InstrumentID", c_char * 31),	# 合约代码 
-        ("OrderRef", c_char * 21),	# 报单引用 
-        ("ExchangeID", c_char * 11),	# 交易所代码 
+        ("OrderRef", c_char * 13),	# 报单引用 
+        ("ExchangeID", c_char * 9),	# 交易所代码 
         ("LimitPrice", c_double),	# 价格 
         ("VolumeTraded", c_int),	# 今成交数量 
         ("VolumeTotal", c_int),	# 剩余数量 
@@ -303,19 +304,19 @@ class LFRtnTradeField(Structure):
     _fields_ = [
         ("BrokerID", c_char * 11),	# 经纪公司代码 
         ("UserID", c_char * 16),	# 用户代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ("BusinessUnit", c_char * 21),	# 业务单元 
         ("InstrumentID", c_char * 31),	# 合约代码 
-        ("OrderRef", c_char * 21),	# 报单引用 
-        ("ExchangeID", c_char * 11),	# 交易所代码 
+        ("OrderRef", c_char * 13),	# 报单引用 
+        ("ExchangeID", c_char * 9),	# 交易所代码 
         ("TradeID", c_char * 21),	# 成交编号 
-        ("OrderSysID", c_char * 31),	# 报单编号 
+        ("OrderSysID", c_char * 21),	# 报单编号 
         ("ParticipantID", c_char * 11),	# 会员代码 
-        ("ClientID", c_char * 21),	# 客户代码 
+        ("ClientID", c_char * 11),	# 客户代码 
         ("Price", c_double),	# 价格 
         ("Volume", c_int),	# 数量 
-        ("TradingDay", c_char * 13),	# 交易日 
-        ("TradeTime", c_char * 13),	# 成交时间 
+        ("TradingDay", c_char * 9),	# 交易日 
+        ("TradeTime", c_char * 9),	# 成交时间 
         ("Direction", c_char),	# 买卖方向 LfDirectionType
         ("OffsetFlag", c_char),	# 开平标志 LfOffsetFlagType
         ("HedgeFlag", c_char),	# 投机套保标志 LfHedgeFlagType
@@ -324,12 +325,12 @@ class LFRtnTradeField(Structure):
 class LFOrderActionField(Structure):
     _fields_ = [
         ("BrokerID", c_char * 11),	# 经纪公司代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ("InstrumentID", c_char * 31),	# 合约代码 
-        ("ExchangeID", c_char * 11),	# 交易所代码 
+        ("ExchangeID", c_char * 9),	# 交易所代码 
         ("UserID", c_char * 16),	# 用户代码 
-        ("OrderRef", c_char * 21),	# 报单引用 
-        ("OrderSysID", c_char * 31),	# 报单编号 
+        ("OrderRef", c_char * 13),	# 报单引用 
+        ("OrderSysID", c_char * 21),	# 报单编号 
         ("RequestID", c_int),	# 请求编号 
         ("ActionFlag", c_char),	# 报单操作标志 char
         ("LimitPrice", c_double),	# 价格 
@@ -340,17 +341,17 @@ class LFOrderActionField(Structure):
 class LFQryAccountField(Structure):
     _fields_ = [
         ("BrokerID", c_char * 11),	# 经纪公司代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ]
 
 class LFRspAccountField(Structure):
     _fields_ = [
         ("BrokerID", c_char * 11),	# 经纪公司代码 
-        ("InvestorID", c_char * 19),	# 投资者代码 
+        ("InvestorID", c_char * 13),	# 投资者代码 
         ("PreMortgage", c_double),	# 上次质押金额 
         ("PreCredit", c_double),	# 上次信用额度 
         ("PreDeposit", c_double),	# 上次存款额 
-        ("preBalance", c_double),	# 上次结算准备金 
+        ("PreBalance", c_double),	# 上次结算准备金 
         ("PreMargin", c_double),	# 上次占用的保证金 
         ("Deposit", c_double),	# 入金金额 
         ("Withdraw", c_double),	# 出金金额 
@@ -531,7 +532,7 @@ DataFieldMap = {
 		'ExchangeMargin': 'd',
 		'PreMargin': 'd',
 		'DeliveryMargin': 'd',
-		'preBalance': 'd',
+		'PreBalance': 'd',
 		'TradingDay': 'c9',
 		'BrokerID': 'c11',
 		'Deposit': 'd',

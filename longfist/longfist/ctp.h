@@ -3,7 +3,7 @@
 #ifndef LONGFIST_UTIL_CTP_H
 #define LONGFIST_UTIL_CTP_H
 
-#include "../api/ctp/v6.3.6_20160606/include/ThostFtdcUserApiStruct.h"
+#include "../api/ctp/v6.3.15_20190220_se_linux64/include/ThostFtdcUserApiStruct.h"
 #include "LFDataStruct.h"
 #define KUNGFU_LF_CTP
 #include "longfist/transfer_m.h"
@@ -65,6 +65,7 @@ inline struct LFQryPositionField parseFrom(const struct CThostFtdcQryInvestorPos
 	memcpy(res.BrokerID, ori.BrokerID, 11);
 	memcpy(res.InvestorID, ori.InvestorID, 13);
 	memcpy(res.InstrumentID, ori.InstrumentID, 31);
+    memcpy(res.ExchangeID, ori.ExchangeID, 9);
 	return res;
 }
 
@@ -74,6 +75,7 @@ inline struct CThostFtdcQryInvestorPositionField parseTo(const struct LFQryPosit
 	memcpy(res.BrokerID, lf.BrokerID, 11);
 	memcpy(res.InvestorID, lf.InvestorID, 13);
 	memcpy(res.InstrumentID, lf.InstrumentID, 31);
+    memcpy(res.ExchangeID, lf.ExchangeID, 9);
 	return res;
 }
 
@@ -85,6 +87,7 @@ inline struct LFRspPositionField parseFrom(const struct CThostFtdcInvestorPositi
 	res.Position = ori.Position;
 	memcpy(res.BrokerID, ori.BrokerID, 11);
 	memcpy(res.InvestorID, ori.InvestorID, 13);
+	memcpy(res.ExchangeID, ori.ExchangeID, 9);
 	res.PositionCost = ori.PositionCost;
 	res.HedgeFlag = ori.HedgeFlag;
 	res.PosiDirection = ori.PosiDirection;
@@ -185,7 +188,7 @@ inline struct LFRtnTradeField parseFrom(const struct CThostFtdcTradeField& ori)
 	memcpy(res.ClientID, ori.ClientID, 11);
 	res.Price = ori.Price;
 	res.Volume = ori.Volume;
-	memcpy(res.TradingDay, ori.TradingDay, 13);
+	memcpy(res.TradingDay, ori.TradingDay, 9);
 	memcpy(res.TradeTime, ori.TradeTime, 9);
 	res.Direction = ori.Direction;
 	res.OffsetFlag = ori.OffsetFlag;
@@ -251,7 +254,7 @@ inline struct LFRspAccountField parseFrom(const struct CThostFtdcTradingAccountF
 	res.PreMortgage = ori.PreMortgage;
 	res.PreCredit = ori.PreCredit;
 	res.PreDeposit = ori.PreDeposit;
-	res.preBalance = ori.PreBalance;
+	res.PreBalance = ori.PreBalance;
 	res.PreMargin = ori.PreMargin;
 	res.Deposit = ori.Deposit;
 	res.Withdraw = ori.Withdraw;

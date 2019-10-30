@@ -154,8 +154,12 @@ typedef char LfForceCloseReasonType;
 #define LF_CHAR_Argitrage       '2'
 //套保
 #define LF_CHAR_Hedge           '3'
-//做市商(femas)
-#define LF_CHAR_MarketMaker     '4'
+//做市商
+#define LF_CHAR_MarketMaker     '5'
+//第一腿投机第二腿套保 大商所专用
+#define LF_CHAR_SpecHedge       '6'
+//第一腿套保第二腿投机  大商所专用
+#define LF_CHAR_HedgeSpec       '7'
 //匹配所有的值(femas)
 #define LF_CHAR_AllValue        '9'
 
@@ -192,6 +196,32 @@ typedef char LfOffsetFlagType;
 #define LF_CHAR_LimitPrice      '2'
 //最优价
 #define LF_CHAR_BestPrice       '3'
+//最新价
+#define LF_CHAR_LastPrice '4'
+//最新价浮动上浮1个ticks
+#define LF_CHAR_LastPricePlusOneTicks '5'
+//最新价浮动上浮2个ticks
+#define LF_CHAR_LastPricePlusTwoTicks '6'
+//最新价浮动上浮3个ticks
+#define LF_CHAR_LastPricePlusThreeTicks '7'
+//卖一价
+#define LF_CHAR_AskPrice1 '8'
+//卖一价浮动上浮1个ticks
+#define LF_CHAR_AskPrice1PlusOneTicks '9'
+//卖一价浮动上浮2个ticks
+#define LF_CHAR_AskPrice1PlusTwoTicks 'A'
+//卖一价浮动上浮3个ticks
+#define LF_CHAR_AskPrice1PlusThreeTicks 'B'
+//买一价
+#define LF_CHAR_BidPrice1 'C'
+//买一价浮动上浮1个ticks
+#define LF_CHAR_BidPrice1PlusOneTicks 'D'
+//买一价浮动上浮2个ticks
+#define LF_CHAR_BidPrice1PlusTwoTicks 'E'
+//买一价浮动上浮3个ticks
+#define LF_CHAR_BidPrice1PlusThreeTicks 'F'
+//五档价
+#define LF_CHAR_FiveLevelPrice 'G'
 
 typedef char LfOrderPriceTypeType;
 

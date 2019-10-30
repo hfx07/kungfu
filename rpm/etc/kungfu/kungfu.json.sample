@@ -25,7 +25,7 @@
     "ctp":
     {
       "FrontUri": "tcp://180.168.146.187:10000",
-      "NeedAuth": false,
+      "NeedAuth": true,
       "NeedSettleConfirm": true,
       "accounts":
       [
@@ -35,7 +35,9 @@
             "UserId": "YOUR_USER_ID",
             "InvestorId": "YOUR_INVESTOR_ID",
             "BrokerId": "YOUR_BROKER_ID",
-            "Password": "YOUR_PASSWORD"
+            "Password": "YOUR_PASSWORD",
+            "AppId": "YOUR_APP_ID",
+            "AuthCode": "YOUR_AUTH_CODE"
           },
           "clients": ["YOUR_STRATEGY1","YOUR_STRATEGY2","YOUR_STRATEGY3"],
           "is_default": true

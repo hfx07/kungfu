@@ -78,7 +78,10 @@ TradeAccount TDEngineCTP::load_account(int idx, const json& j_config)
     unit.logged_in = false;
     unit.settle_confirmed = false;
     if (need_authenticate)
+    {
+        unit.app_id = j_config[WC_CONFIG_KEY_APP_ID].get<string>();
         unit.auth_code = j_config[WC_CONFIG_KEY_AUTH_CODE].get<string>();
+    }
 
     // set up
     TradeAccount account = {};
@@ -134,12 +137,14 @@ void TDEngineCTP::login(long timeout_nsec)
             struct CThostFtdcReqAuthenticateField req = {};
             strcpy(req.BrokerID, account.BrokerID);
             strcpy(req.UserID, account.UserID);
+            strcpy(req.AppID, unit.app_id.c_str());
             strcpy(req.AuthCode, unit.auth_code.c_str());
             unit.auth_rid = request_id;
             if (unit.api->ReqAuthenticate(&req, request_id++))
             {
                 KF_LOG_ERROR(logger, "[request] auth failed!" << " (Bid)" << req.BrokerID
                                                               << " (Uid)" << req.UserID
+                                                              << " (Aid)" << req.AppID
                                                               << " (Auth)" << req.AuthCode);
             }
             long start_time = yijinjing::getNanoTime();
@@ -158,7 +163,8 @@ void TDEngineCTP::login(long timeout_nsec)
             if (unit.api->ReqUserLogin(&req, request_id++))
             {
                 KF_LOG_ERROR(logger, "[request] login failed!" << " (Bid)" << req.BrokerID
-                                                               << " (Uid)" << req.UserID);
+                                                               << " (Uid)" << req.UserID
+                                                               << " (Pwd)" << req.Password);
             }
             long start_time = yijinjing::getNanoTime();
             while (!unit.logged_in && yijinjing::getNanoTime() - start_time < timeout_nsec)
@@ -229,7 +235,7 @@ bool TDEngineCTP::is_logged_in() const
 {
     for (auto& unit: account_units)
     {
-        if (!unit.logged_in || (need_settleConfirm && !unit.settle_confirmed))
+        if (!unit.logged_in || (need_settleConfirm && !unit.settle_confirmed) || (need_authenticate && !unit.authenticated))
             return false;
     }
     return true;
@@ -286,6 +292,7 @@ void TDEngineCTP::req_order_insert(const LFInputOrderField* data, int account_in
     KF_LOG_DEBUG(logger, "[req_order_insert]" << " (rid)" << requestId
                                               << " (Iid)" << req.InvestorID
                                               << " (Tid)" << req.InstrumentID
+                                              << " (Eid)" << req.ExchangeID
                                               << " (OrderRef)" << req.OrderRef);
 
     if (account_units[account_index].api->ReqOrderInsert(&req, requestId))
@@ -304,6 +311,8 @@ void TDEngineCTP::req_order_action(const LFOrderActionField* data, int account_i
     req.SessionID = unit.session_id;
     KF_LOG_DEBUG(logger, "[req_order_action]" << " (rid)" << requestId
                                               << " (Iid)" << req.InvestorID
+                                              << " (Tid)" << req.InstrumentID
+                                              << " (Eid)" << req.ExchangeID
                                               << " (OrderRef)" << req.OrderRef
                                               << " (OrderActionRef)" << req.OrderActionRef);
 
@@ -348,9 +357,11 @@ void TDEngineCTP::OnRspAuthenticate(CThostFtdcRspAuthenticateField *pRspAuthenti
     }
     else
     {
-        KF_LOG_INFO(logger, "[OnRspAuthenticate]" << " (userId)" <<  pRspAuthenticateField->UserID
-                                                  << " (brokerId)" << pRspAuthenticateField->BrokerID
-                                                  << " (product)" << pRspAuthenticateField->UserProductInfo
+        KF_LOG_INFO(logger, "[OnRspAuthenticate]" << " (Bid)" <<  pRspAuthenticateField->BrokerID
+                                                  << " (Uid)" << pRspAuthenticateField->UserID
+                                                  << " (prodInfo)" << pRspAuthenticateField->UserProductInfo
+                                                  << " (Aid)" << pRspAuthenticateField->AppID
+                                                  << " (Atype)" << pRspAuthenticateField->AppType
                                                   << " (rid)" << nRequestID);
         for (auto& unit: account_units)
         {
@@ -399,8 +410,8 @@ void TDEngineCTP::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmFiel
     }
     else
     {
-        KF_LOG_INFO(logger, "[OnRspSettlementInfoConfirm]" << " (brokerID)" << pSettlementInfoConfirm->BrokerID
-                                                           << " (investorID)" << pSettlementInfoConfirm->InvestorID
+        KF_LOG_INFO(logger, "[OnRspSettlementInfoConfirm]" << " (Bid)" << pSettlementInfoConfirm->BrokerID
+                                                           << " (Iid)" << pSettlementInfoConfirm->InvestorID
                                                            << " (confirmDate)" << pSettlementInfoConfirm->ConfirmDate
                                                            << " (confirmTime)" << pSettlementInfoConfirm->ConfirmTime);
         for (auto& unit: account_units)
@@ -423,8 +434,8 @@ void TDEngineCTP::OnRspUserLogout(CThostFtdcUserLogoutField *pUserLogout, CThost
     }
     else
     {
-        KF_LOG_INFO(logger, "[OnRspUserLogout]" << " (brokerId)" << pUserLogout->BrokerID
-                                                << " (userId)" << pUserLogout->UserID);
+        KF_LOG_INFO(logger, "[OnRspUserLogout]" << " (Bid)" << pUserLogout->BrokerID
+                                                << " (Uid)" << pUserLogout->UserID);
         for (auto& unit: account_units)
         {
             if (unit.login_rid == nRequestID)

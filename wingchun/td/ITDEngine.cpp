@@ -197,7 +197,7 @@ void ITDEngine::listening()
                         strcpy(order->BusinessUnit, accounts[idx].BusinessUnit);
                         string order_ref = std::to_string(local_id);
                         td_helper->record_order(local_id, requestId);
-                        user_helper->record_order(name, local_id, requestId, order->InstrumentID);
+                        user_helper->record_order(name, local_id, requestId, order->InstrumentID, order->ExchangeID);
                         local_id ++;
                         strcpy(order->OrderRef, order_ref.c_str());
                         long before_nano = kungfu::yijinjing::getNanoTime();
@@ -214,7 +214,7 @@ void ITDEngine::listening()
                         strcpy(order->InvestorID, accounts[idx].InvestorID);
                         int order_id = order->KfOrderID;
                         int local_id;
-                        if (user_helper->get_order(name, order_id, local_id, order->InstrumentID))
+                        if (user_helper->get_order(name, order_id, local_id, order->InstrumentID, order->ExchangeID))
                         {
                             string order_ref = std::to_string(local_id);
                             strcpy(order->OrderRef, order_ref.c_str());
@@ -454,7 +454,7 @@ bool ITDEngine::remove_client(const string &client_name, const json &j_request)
             strcpy(action.BrokerID, accounts[idx].BrokerID);
             strcpy(action.InvestorID, accounts[idx].InvestorID);
             int local_id;
-            if (user_helper->get_order(client_name, order_id, local_id, action.InstrumentID))
+            if (user_helper->get_order(client_name, order_id, local_id, action.InstrumentID, action.ExchangeID))
             {
                 string order_ref = std::to_string(local_id);
                 strcpy(action.OrderRef, order_ref.c_str());

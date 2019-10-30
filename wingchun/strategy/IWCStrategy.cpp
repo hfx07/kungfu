@@ -95,7 +95,7 @@ void IWCStrategy::block()
 
 void IWCStrategy::on_market_data(const LFMarketDataField* data, short source, long rcv_time)
 {
-    KF_LOG_DEBUG(logger, "[market_data] (source)" << source << " (ticker)" << data->InstrumentID << " (lp)" << data->LastPrice << " (v)" << data->Volume << " (t)" << data->Turnover << " (bp1)" << data->BidPrice1 << " (bv1)" << data->BidVolume1 << " (ap1)" << data->AskPrice1 << " (av1)" << data->AskVolume1);
+    KF_LOG_DEBUG(logger, "[market_data] (source)" << source << " (ticker)" << data->InstrumentID << " (t)" << data->UpdateTime << "." << std::setfill('0') << std::setw(3) << data->UpdateMillisec << std::setfill(' ') << " (lp)" << data->LastPrice << " (v)" << data->Volume << " (to)" << data->Turnover << " (bid)" << data->BidVolume1 << "@" << data->BidPrice1 << " (ask)" << data->AskVolume1 << "@" << data->AskPrice1);
 }
 
 void IWCStrategy::on_market_data_level2(const LFL2MarketDataField* data, short source, long rcv_time)

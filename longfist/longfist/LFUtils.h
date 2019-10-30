@@ -223,6 +223,32 @@ inline std::string getLfOrderPriceTypeType(char data)
 			return "BestPrice";
 		case '2':
 			return "LimitPrice";
+        case '4':
+            return "LastPrice";
+        case '5':
+            return "LastPricePlusOneTicks";
+        case '6':
+            return "LastPricePlusTwoTicks";
+        case '7':
+            return "LastPricePlusThreeTicks";
+        case '8':
+            return "AskPrice1";
+        case '9':
+            return "AskPrice1PlusOneTicks";
+        case 'A':
+            return "AskPrice1PlusTwoTicks";
+        case 'B':
+            return "AskPrice1PlusThreeTicks";
+        case 'C':
+            return "BidPrice1";
+        case 'D':
+            return "BidPrice1PlusOneTicks";
+        case 'E':
+            return "BidPrice1PlusTwoTicks";
+        case 'F':
+            return "BidPrice1PlusThreeTicks";
+        case 'G':
+            return "FiveLevelPrice";
 		default:
 			return "UnExpected!";
 	};
@@ -346,8 +372,12 @@ inline std::string getLfHedgeFlagType(char data)
 			return "Hedge";
 		case '2':
 			return "Argitrage";
-		case '4':
+		case '5':
 			return "MarketMaker";
+        case '6':
+            return "SpecHedge";
+        case '7':
+            return "HedgeSpec";
 		default:
 			return "UnExpected!";
 	};

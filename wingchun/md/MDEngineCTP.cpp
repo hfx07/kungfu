@@ -44,7 +44,7 @@ void MDEngineCTP::connect(long timeout_nsec)
 {
     if (api == nullptr)
     {
-        api = CThostFtdcMdApi::CreateFtdcMdApi();
+        api = CThostFtdcMdApi::CreateFtdcMdApi("", true);
         if (!api)
         {
             throw std::runtime_error("CTP_MD failed to create api");
@@ -72,7 +72,8 @@ void MDEngineCTP::login(long timeout_nsec)
         if (api->ReqUserLogin(&req, reqId++))
         {
             KF_LOG_ERROR(logger, "[request] login failed!" << " (Bid)" << req.BrokerID
-                                                           << " (Uid)" << req.UserID);
+                                                           << " (Uid)" << req.UserID
+                                                           << " (Pwd)" << req.Password);
         }
         long start_time = yijinjing::getNanoTime();
         while (!logged_in && yijinjing::getNanoTime() - start_time < timeout_nsec)

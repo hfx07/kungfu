@@ -58,6 +58,7 @@
 /// (string) WingchunConfigKey
 //////////////////////////////////////////
 #define WC_CONFIG_KEY_PASSWORD          "Password"
+#define WC_CONFIG_KEY_APP_ID            "AppId"
 #define WC_CONFIG_KEY_AUTH_CODE         "AuthCode"
 #define WC_CONFIG_KEY_NEED_AUTH         "NeedAuth"
 #define WC_CONFIG_KEY_NEED_SETTLE_CONFIRM "NeedSettleConfirm"

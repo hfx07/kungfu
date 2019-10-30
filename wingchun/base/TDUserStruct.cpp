@@ -146,7 +146,7 @@ TDOrderInfo* TDUserInfoHelper::locate_writable(const string &user_name, int orde
     }
 }
 
-void TDUserInfoHelper::record_order(const string& user_name, int local_id, int order_id, const char* ticker)
+void TDUserInfoHelper::record_order(const string& user_name, int local_id, int order_id, const char* ticker, const char* exchange_id)
 {
     TDOrderInfo* order_info = locate_writable(user_name, order_id);
     if (order_info != nullptr)
@@ -155,16 +155,18 @@ void TDUserInfoHelper::record_order(const string& user_name, int local_id, int o
         order_info->local_id = local_id;
         order_info->status = LF_CHAR_OrderInserted;
         strncpy(order_info->ticker, ticker, ORDER_INFO_TICKER_LIMIT);
+        strncpy(order_info->exchange_id, exchange_id, ORDER_INFO_EXCHANGE_ID_LIMIT);
     }
 }
 
-bool TDUserInfoHelper::get_order(const string& user_name, int order_id, int &local_id, char* ticker) const
+bool TDUserInfoHelper::get_order(const string& user_name, int order_id, int &local_id, char* ticker, char* exchange_id) const
 {
     TDOrderInfo* order_info = locate_readable(user_name, order_id);
     if (order_info != nullptr)
     {
         local_id = order_info->local_id;
         strncpy(ticker, order_info->ticker, ORDER_INFO_TICKER_LIMIT);
+        strncpy(exchange_id, order_info->exchange_id, ORDER_INFO_EXCHANGE_ID_LIMIT);
         return true;
     }
     else

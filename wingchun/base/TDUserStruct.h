@@ -31,7 +31,8 @@ using json = nlohmann::json;
 WC_NAMESPACE_START
 
 #define ORDER_INFO_RAW  '\0'
-#define ORDER_INFO_TICKER_LIMIT 15
+#define ORDER_INFO_TICKER_LIMIT 31
+#define ORDER_INFO_EXCHANGE_ID_LIMIT 9
 
 struct TDOrderInfo
 {
@@ -43,6 +44,8 @@ struct TDOrderInfo
     char status;
     /** InstrumentID name */
     char ticker[ORDER_INFO_TICKER_LIMIT];
+    /** ExchangeID name */
+    char exchange_id[ORDER_INFO_EXCHANGE_ID_LIMIT];
 } __attribute__((packed));
 
 /** for one single strategy,
@@ -114,7 +117,7 @@ protected:
     /** necessary cleanup when to a trading day is over */
     void switch_day();
     /** record order info */
-    void record_order(const string& user_name, int local_id, int order_id, const char* ticker);
+    void record_order(const string& user_name, int local_id, int order_id, const char* ticker, const char* exchange_id);
     /** set position json string */
     void set_pos(const string& user_name, const json& pos);
     /** clean up user info */
@@ -136,7 +139,7 @@ public:
     /** default destructor */
     ~TDUserInfoHelper();
     /** get order info, return true if local_id and ticker are set properly */
-    bool get_order(const string& user_name, int order_id, int &local_id, char* ticker) const;
+    bool get_order(const string& user_name, int order_id, int &local_id, char* ticker, char* exchange_id) const;
     /** set order status when updated by return-order */
     void set_order_status(const string& user_name, int order_id, char status);
     /** get position json */

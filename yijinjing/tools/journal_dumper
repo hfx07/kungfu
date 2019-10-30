@@ -75,8 +75,8 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output', help='output file name', type=str, default='')
     parser.add_argument('-v', '--visualize', help='visualize the time', action="count", default=0)
     parser.add_argument('-p', '--print_out', help='print to console while dumping', action="count", default=0)
-    parser.add_argument('-s', '--start', help='start time ({})'.format(format_d_str), type=str, default='19000101-00:00:00')
-    parser.add_argument('-e', '--end', help='end time ({})'.format(format_d_str), type=str, default='29990101-00:00:00')
+    parser.add_argument('-s', '--start', help='start time ({})'.format(format_d_str), type=str, default='19000101-00:00:00.00')
+    parser.add_argument('-e', '--end', help='end time ({})'.format(format_d_str), type=str, default='29990101-00:00:00.00')
     args = parser.parse_args()
     ready_to_dump = True
     if len(args.name) == 0:

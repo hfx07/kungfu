@@ -37,6 +37,7 @@ struct AccountUnitCTP
     CThostFtdcTraderApi* api;
     // extra information
     string  auth_code;
+    string  app_id;
     int     front_id;
     int     session_id;
     // internal flags

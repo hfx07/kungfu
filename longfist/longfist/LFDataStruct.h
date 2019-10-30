@@ -19,10 +19,10 @@ typedef char char_11[11];
 
 struct LFMarketDataField
 {
-	char_13  	TradingDay;            //交易日
+	char_9  	TradingDay;            //交易日
 	char_31  	InstrumentID;          //合约代码
 	char_9   	ExchangeID;            //交易所代码
-	char_64  	ExchangeInstID;        //合约在交易所的代码
+	char_31  	ExchangeInstID;        //合约在交易所的代码
 	double   	LastPrice;             //最新价
 	double   	PreSettlementPrice;    //上次结算价
 	double   	PreClosePrice;         //昨收盘
@@ -39,7 +39,7 @@ struct LFMarketDataField
 	double   	LowerLimitPrice;       //跌停板价
 	double   	PreDelta;              //昨虚实度
 	double   	CurrDelta;             //今虚实度
-	char_13  	UpdateTime;            //最后修改时间
+	char_9  	UpdateTime;            //最后修改时间
 	int      	UpdateMillisec;        //最后修改毫秒
 	double   	BidPrice1;             //申买价一
 	int      	BidVolume1;            //申买量一
@@ -62,7 +62,7 @@ struct LFMarketDataField
 	double   	AskPrice5;             //申卖价五
 	int      	AskVolume5;            //申卖量五
 	double		AveragePrice;          //当日均价
-	char_13  	ActionDay;             //业务日期
+	char_9  	ActionDay;             //业务日期
 };
 
 struct LFL2MarketDataField
@@ -242,7 +242,7 @@ struct LFBarMarketDataField
 struct LFQryPositionField
 {
 	char_11  	BrokerID;              //经纪公司代码
-	char_19  	InvestorID;            //投资者代码
+	char_13  	InvestorID;            //投资者代码
 	char_31  	InstrumentID;          //合约代码
 	char_9   	ExchangeID;            //交易所代码
 };
@@ -253,7 +253,8 @@ struct LFRspPositionField
 	int                  	YdPosition;            //上日持仓
 	int                  	Position;              //总持仓
 	char_11              	BrokerID;              //经纪公司代码
-	char_19              	InvestorID;            //投资者代码
+	char_13              	InvestorID;            //投资者代码
+	char_9              	ExchangeID;            //交易所代码
 	double               	PositionCost;          //持仓成本
 	LfHedgeFlagType      	HedgeFlag;             //投机套保标志
 	LfPosiDirectionType  	PosiDirection;         //持仓多空方向
@@ -263,11 +264,11 @@ struct LFInputOrderField
 {
 	char_11                    	BrokerID;              //经纪公司代码
 	char_16                    	UserID;                //用户代码
-	char_19                    	InvestorID;            //投资者代码
+	char_13                    	InvestorID;            //投资者代码
 	char_21                    	BusinessUnit;          //业务单元
 	char_9                     	ExchangeID;            //交易所代码
 	char_31                    	InstrumentID;          //合约代码
-	char_21                    	OrderRef;              //报单引用
+	char_13                    	OrderRef;              //报单引用
 	double                     	LimitPrice;            //价格
 	int                        	Volume;                //数量
 	int                        	MinVolume;             //最小成交量
@@ -289,11 +290,11 @@ struct LFRtnOrderField
 	char_11                	BrokerID;              //经纪公司代码
 	char_16                	UserID;                //用户代码
 	char_11                	ParticipantID;         //会员代码
-	char_19                	InvestorID;            //投资者代码
+	char_13                	InvestorID;            //投资者代码
 	char_21                	BusinessUnit;          //业务单元
 	char_31                	InstrumentID;          //合约代码
-	char_21                	OrderRef;              //报单引用
-	char_11                	ExchangeID;            //交易所代码
+	char_13                	OrderRef;              //报单引用
+	char_9                	ExchangeID;            //交易所代码
 	double                 	LimitPrice;            //价格
 	int                    	VolumeTraded;          //今成交数量
 	int                    	VolumeTotal;           //剩余数量
@@ -312,19 +313,19 @@ struct LFRtnTradeField
 {
 	char_11           	BrokerID;              //经纪公司代码
 	char_16           	UserID;                //用户代码
-	char_19           	InvestorID;            //投资者代码
+	char_13           	InvestorID;            //投资者代码
 	char_21           	BusinessUnit;          //业务单元
 	char_31           	InstrumentID;          //合约代码
-	char_21           	OrderRef;              //报单引用
-	char_11           	ExchangeID;            //交易所代码
+	char_13           	OrderRef;              //报单引用
+	char_9           	ExchangeID;            //交易所代码
 	char_21           	TradeID;               //成交编号
-	char_31           	OrderSysID;            //报单编号
+	char_21           	OrderSysID;            //报单编号
 	char_11           	ParticipantID;         //会员代码
-	char_21           	ClientID;              //客户代码
+	char_11           	ClientID;              //客户代码
 	double            	Price;                 //价格
 	int               	Volume;                //数量
-	char_13           	TradingDay;            //交易日
-	char_13           	TradeTime;             //成交时间
+	char_9           	TradingDay;            //交易日
+	char_9           	TradeTime;             //成交时间
 	LfDirectionType   	Direction;             //买卖方向
 	LfOffsetFlagType  	OffsetFlag;            //开平标志
 	LfHedgeFlagType   	HedgeFlag;             //投机套保标志
@@ -332,34 +333,34 @@ struct LFRtnTradeField
 
 struct LFOrderActionField
 {
-	char_11  	BrokerID;              //经纪公司代码
-	char_19  	InvestorID;            //投资者代码
-	char_31  	InstrumentID;          //合约代码
-	char_11  	ExchangeID;            //交易所代码
-	char_16  	UserID;                //用户代码
-	char_21  	OrderRef;              //报单引用
-	char_31  	OrderSysID;            //报单编号
-	int      	RequestID;             //请求编号
-	char     	ActionFlag;            //报单操作标志
-	double   	LimitPrice;            //价格
-	int      	VolumeChange;          //数量变化
-	int      	KfOrderID;             //Kf系统内订单ID
+	char_11  	        BrokerID;              //经纪公司代码
+	char_13  	        InvestorID;            //投资者代码
+	char_31  	        InstrumentID;          //合约代码
+	char_9  	        ExchangeID;            //交易所代码
+	char_16  	        UserID;                //用户代码
+	char_13  	        OrderRef;              //报单引用
+	char_21  	        OrderSysID;            //报单编号
+	int      	        RequestID;             //请求编号
+	LfActionFlagType    ActionFlag;            //报单操作标志
+	double   	        LimitPrice;            //价格
+	int      	        VolumeChange;          //数量变化
+	int      	        KfOrderID;             //Kf系统内订单ID
 };
 
 struct LFQryAccountField
 {
 	char_11  	BrokerID;              //经纪公司代码
-	char_19  	InvestorID;            //投资者代码
+	char_13  	InvestorID;            //投资者代码
 };
 
 struct LFRspAccountField
 {
 	char_11  	BrokerID;              //经纪公司代码
-	char_19  	InvestorID;            //投资者代码
+	char_13  	InvestorID;            //投资者代码
 	double   	PreMortgage;           //上次质押金额
 	double   	PreCredit;             //上次信用额度
 	double   	PreDeposit;            //上次存款额
-	double   	preBalance;            //上次结算准备金
+	double   	PreBalance;            //上次结算准备金
 	double   	PreMargin;             //上次占用的保证金
 	double   	Deposit;               //入金金额
 	double   	Withdraw;              //出金金额
